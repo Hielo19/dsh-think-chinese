@@ -1,0 +1,29 @@
+# ============================================================================
+# dsh-think-chinese — DSH bundle patch
+# ============================================================================
+# 本文件是插件的「挂载声明」：DSH 启动时按 bundle 层叠加各插件的 patch，
+# 本文件把 dsh-think-chinese 这一行插件插入 profile 的组合树。
+#
+# 安装方式（推荐，交给 DSH 自己管理依赖与 bundle 层）：
+#     dsh plugin --profile web add link:<本目录绝对路径>
+# 或者直接让 Harness 的 plugin_manager 安装本目录。
+#
+# 行内 config 与 lib/index.js 的 Config schema 一一对应，可在此调整，
+# 也可以改 profile 自己的 cordis.patch.yml 覆盖（后者优先级更高）。
+# ============================================================================
+
+- insert:
+    - id: dsh-think-chinese
+      name: dsh-think-chinese
+      config:
+        # 总开关：false 时插件完全不加任何提示词。
+        enabled: true
+        # 思考链使用的语言（也会出现在提示词文案里）。
+        language: 中文
+        # 生效范围：
+        #   reasoning —— 只强制思考链（reasoning）用中文，正文保持原样
+        #   all       —— 思考链与正文都用中文
+        #   reply     —— 只强制正文用中文
+        scope: reasoning
+        # 预留：追加自定义要求（例如术语表、语气要求），留空则不加。
+        extraInstruction: ''

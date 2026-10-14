@@ -1,0 +1,29 @@
+name: verify
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+# 插件零依赖：不需要 npm install，只跑 Node 内置断言。
+jobs:
+  verify:
+    name: node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20', '22', '24']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 冒烟验证（段落文案 / 配置归一化 / 生命周期）
+        run: npm test
+
+      - name: 校验包清单可被 pack
+        run: npm pack --dry-run

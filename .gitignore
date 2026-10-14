@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+*.tgz
+
+# 打 Release 时的临时文件
+.create-repo.json
+
+# 打包/安装日志
+npm-debug.log*
+pnpm-debug.log*
+.npm/
+.pnpm-store/
+*.log
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+.release-body.md
+.release.json
